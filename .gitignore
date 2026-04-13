@@ -1,0 +1,35 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Next.js Build Output
+/.next/
+/out/
+
+# Production Build
+/build
+
+# Environment Variables
+.env*.local
+.env
+
+# Debugging and Logs
+*.log
+npm-debug.log*
+
+# Vercel and Deployment
+.vercel
+
+# TypeScript and IDE
+*.tsbuildinfo
+next-env.d.ts
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+*.pem
