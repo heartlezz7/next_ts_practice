@@ -1,0 +1,29 @@
+services:
+  web:
+    build: .
+    container_name: hadevz_web
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+    networks:
+      - app_network
+    # Port 3000 is NOT exposed to the host — nginx is the only entry point
+
+  nginx:
+    image: nginx:alpine
+    container_name: hadevz_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - web
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge

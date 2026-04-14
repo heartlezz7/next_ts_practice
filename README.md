@@ -26,7 +26,22 @@ npm run build
 npm run start
 ```
 
-### Docker
+### Docker Compose (recommended)
+
+Spins up the Next.js app behind an nginx reverse proxy:
+
+```bash
+docker compose up -d --build
+```
+
+Open [http://localhost](http://localhost) — nginx listens on port 80 and proxies to the app.
+
+```bash
+docker compose down        # stop and remove containers
+docker compose logs -f     # stream logs
+```
+
+### Docker (standalone)
 
 ```bash
 docker build -t next-practice .
@@ -50,9 +65,12 @@ The Dockerfile uses a multi-stage build with `node:20-alpine` and runs as a non-
 
 ```
 app/
-  layout.tsx    # Root layout & metadata
-  page.tsx      # Home page (/)
-  globals.css   # Global CSS reset
+  layout.tsx        # Root layout & metadata
+  page.tsx          # Home page (/)
+  globals.css       # Global CSS reset
+nginx/
+  nginx.conf        # Reverse proxy config
+docker-compose.yml  # Orchestrates web + nginx
 Dockerfile
 next.config.ts
 tsconfig.json
